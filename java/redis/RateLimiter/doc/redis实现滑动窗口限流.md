@@ -219,12 +219,12 @@ public void doBefore(JoinPoint point) {
 }
 
 /**
-     * 是否允许请求
-     *
-     * @param rateLimiters 限流注解
-     * @param name         方法全名
-     * @return 是否放行
-     */
+  * 是否允许请求
+  *
+  * @param rateLimiters 限流注解
+  * @param name         方法全名
+  * @return 是否放行
+  */
 private boolean allowRequest(List<RateLimiter> rateLimiters, String name) {
     List<String> keys = getKeys(rateLimiters, name);
     Object[] args = getArgs(rateLimiters);
@@ -234,12 +234,12 @@ private boolean allowRequest(List<RateLimiter> rateLimiters, String name) {
 }
 
 /**
-     * 获取限流的键
-     *
-     * @param rateLimiters 限流注解
-     * @param name         方法全名
-     * @return
-     */
+  * 获取限流的键
+  *
+  * @param rateLimiters 限流注解
+  * @param name         方法全名
+  * @return
+  */
 private List<String> getKeys(List<RateLimiter> rateLimiters, String name) {
     List<String> keys = new ArrayList<>();
 
@@ -270,10 +270,10 @@ private List<String> getKeys(List<RateLimiter> rateLimiters, String name) {
 }
 
 /**
-     * 获取需要的参数
-     *
-     * @param rateLimiters 限流注解
-     * @return
+  * 获取需要的参数
+  *
+  * @param rateLimiters 限流注解
+  * @return
      */
 private Object[] getArgs(List<RateLimiter> rateLimiters) {
     List<Object> args = new ArrayList<>();
