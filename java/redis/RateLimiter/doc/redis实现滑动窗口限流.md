@@ -67,7 +67,7 @@ public void update(){
 
 1. RateLimiter：限流注解
 2. RateLimitRule：限流规则
-3. RateLimiters：存放多个限流注解的容器，为了可以在重复使用该注解
+3. RateLimiters：存放多个限流注解的容器，为了可以重复使用该注解
 
 RateLimiter：
 
@@ -150,9 +150,13 @@ for i = 1, #KEYS do
     redis.call('ZREMRANGEBYSCORE', KEYS[i], '-inf', window_start)
     local current_requests = redis.call('ZCARD', KEYS[i])
     if current_requests < tonumber(ARGV[(i-1)*3+3]) then
-        redis.call('ZADD', KEYS[i], tonumber(ARGV[1]), ARGV[(i-1)*3+4])
     else
         flag = 0
+    end
+end
+if flag == 1 then
+    for i = 1, #KEYS do
+        redis.call('ZADD', KEYS[i], tonumber(ARGV[1]), ARGV[(i-1)*3+4])
     end
 end
 return flag

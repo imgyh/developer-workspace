@@ -194,6 +194,16 @@ public class GlobalExceptionAdvice {
         });
         return map;
     }
+    
+    // 3.处理单个参数校验失败抛出的异常
+    @ExceptionHandler(ConstraintViolationException.class)
+    public List<String> handleVaildException(ConstraintViolationException e) {
+        Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
+        List<String> collect = constraintViolations.stream()
+                .map(o -> o.getMessage())
+                .collect(Collectors.toList());
+        return collect;
+    }
 }
 ```
 
